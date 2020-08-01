@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>BS - les cols de lolo </title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" 
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin=""/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/leaflet-sidebar.css"> 
+    <link rel="stylesheet" href="css/leaflet-search.src.css"> 
+    <link rel="stylesheet" href="css/base.css"> 
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Navbar</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+     <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Dropdown link
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Link 1</a>
+        <a class="dropdown-item" href="#">Link 2</a>
+        <a class="dropdown-item" href="#">Link 3</a>
+      </div>
+    </li>
+    </ul>
+  </div>
+</nav>
+
+
+    <!-- Begin page content -->
+    <div id="mapid">
+      map
+    </div>
+
+
+
+    <footer class="footer">
+      <div class="container-fluid">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </footer>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="crossorigin=""></script>
+    <script src="js/leaflet-sidebar.js"></script>
+     <script src="js/leaflet-search.src.js"></script>
+    
+
+
+    
+<script>
+
+
+let geojsonFeatureCollection = {
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.33463,46.90331,1458 ]
+    },
+    "properties": {
+    "Nom":"Ächerli",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Ächerli - 1458",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 6.45963,46.78932,1293 ]
+    },
+    "properties": {
+    "Nom":"Aiguillon",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Aiguillon - 1293",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.52122,47.276,790 ]
+    },
+    "properties": {
+    "Nom":"Albis",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Albis - 790",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 9.83771,46.58235,2312 ]
+    },
+    "properties": {
+    "Nom":"Albula",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Albula - 2312",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 7.53957,47.26615,1079 ]
+    },
+    "properties": {
+    "Nom":"Balmberg",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Balmberg - 1079",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.03010,47.43547,674 ]
+    },
+    "properties": {
+    "Nom":"Benkerjoch",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Benkerjoch - 674",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 10.02765,46.41093,2328 ]
+    },
+    "properties": {
+    "Nom":"Bernina",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Bernina - 2328",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.08449,47.30728,611 ]
+    },
+    "properties": {
+    "Nom":"Böhler",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Böhler - 611",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.13877,47.48092,569 ]
+    },
+    "properties": {
+    "Nom":"Bözberg",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Bözberg - 569",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.07419,46.32230,1804 ]
+    },
+    "properties": {
+    "Nom":"Bretaye",
+    "Categorie":"Col-routier-liste-wkp",
+    "PopUpContent":"Bretaye - 1804",
+    "Status":"todo"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.74222,47.34985,845 ]
+    },
+    "properties": {
+    "Nom":"Breitehöchi",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Breitehöchi - 845",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.13658,46.75649,1008 ]
+    },
+    "properties": {
+    "Nom":"Brünig",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Brünig - 1008",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.5078,47.29614,786 ]
+    },
+    "properties": {
+    "Nom":"Büchenegg",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Büchenegg - 786",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 7.83419,47.36923,848 ]
+    },
+    "properties": {
+    "Nom":"Chalhöchi",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Chalhöchi - 848",
+    "Status":"todo"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.45881,47.45036,747 ]
+    },
+    "properties": {
+    "Nom":"Challpass",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Challpass - 747",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.10672,46.03194,1498 ]
+    },
+    "properties": {
+    "Nom":"Champex",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Champex - 1498",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.03215,47.11962,1502 ]
+    },
+    "properties": {
+    "Nom":"Chasseral",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Chasseral - 1502",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.7218,47.13637,1053 ]
+    },
+    "properties": {
+    "Nom":"Chatzenstrick",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Chatzenstrick - 1053",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.80206,47.36540,991 ]
+    },
+    "properties": {
+    "Nom":"Chilchzimmersattel-Belchen",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Chilchzimmersattel-Belchen - 991",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 10.29250,46.63967,2149 ]
+    },
+    "properties": {
+    "Nom":"Col de l'Ofen",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Col de l'Ofen - 2149",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  6.33689,46.68512,1060 ]
+    },
+    "properties": {
+    "Nom":"Col du Mont d'Orzeires",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Col du Mont d'Orzeires - 1060",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.12812,46.32221,1778 ]
+    },
+    "properties": {
+    "Nom":"Croix (VD)",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Croix (VD) - 1778",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.14135,47.37284,789 ]
+    },
+    "properties": {
+    "Nom":"Croix (JU)",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Croix (JU) - 789",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  6.49504,46.82986,1152 ]
+    },
+    "properties": {
+    "Nom":"Étroits",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Étroits - 1152",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.77221,47.17345,952 ]
+    },
+    "properties": {
+    "Nom":"Etzelpass",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Etzelpass - 952",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  9.94885,46.74869,2383 ]
+    },
+    "properties": {
+    "Nom":"Flüela",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Flüela - 2383",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.00141,46.05773,1526 ]
+    },
+    "properties": {
+    "Nom":"Forclaz",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Forclaz - 1526",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.41504,46.57258,2431 ]
+    },
+    "properties": {
+    "Nom":"Furka",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Furka - 2431",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.90093,47.32828,977 ]
+    },
+    "properties": {
+    "Nom":"Ghöch",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Ghöch - 977",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  6.08836,46.45600,1232 ]
+    },
+    "properties": {
+    "Nom":"Givrine",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Givrine - 1232",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.10769,46.89223,1543 ]
+    },
+    "properties": {
+    "Nom":"Glaubenberg",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Glaubenberg - 1543",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.09345,46.81921,1611 ]
+    },
+    "properties": {
+    "Nom":"Glaubenbielen",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Glaubenbielen - 1611",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.64752,47.15275,1162 ]
+    },
+    "properties": {
+    "Nom":"Gottschalkenberg (ZG)",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Gottschalkenberg (ZG) - 1162",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.17041,45.86905,2469 ]
+    },
+    "properties": {
+    "Nom":"Grand-Saint-Bernard",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Grand-Saint-Bernard - 2469",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.33770,46.56151,2165 ]
+    },
+    "properties": {
+    "Nom":"Grimsel",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Grimsel - 2165",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.10186,46.65596,1962 ]
+    },
+    "properties": {
+    "Nom":"Grosse Scheidegg",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Grosse Scheidegg - 1162",
+    "Status":"todo"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.44805,46.73225,1608 ]
+    },
+    "properties": {
+    "Nom":"Gurnigel",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Gurnigel - 1608",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.33722,47.41749,664 ]
+    },
+    "properties": {
+    "Nom":"Heitersberg",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Heitersberg - 664",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.61114,47.2266,662 ]
+    },
+    "properties": {
+    "Nom":"Hirzel",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Hirzel - 662",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.96677,47.36249,953 ]
+    },
+    "properties": {
+    "Nom":"Hulftegg",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Hulftegg - 953",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.73326,47.01744,1406 ]
+    },
+    "properties": {
+    "Nom":"Ibergeregg",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Ibergeregg - 1406",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  6.97725,46.45150,1512 ]
+    },
+    "properties": {
+    "Nom":"Jaman",
+    "Categorie":"Col-routier-liste-wkp",
+    "PopUpContent":"Jaman - 1512",
+    "Status":"todo"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.33314,46.58902,1509 ]
+    },
+    "properties": {
+    "Nom":"Jaun",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Jaun - 1509",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  9.72796,46.47222,2284 ]
+    },
+    "properties": {
+    "Nom":"Julier",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Julier - 2284",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 9.14036,47.12079,726 ]
+    },
+    "properties": {
+    "Nom":"Kerenzerberg",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Kerenzerberg - 726",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.85548,46.86819,1948 ]
+    },
+    "properties": {
+    "Nom":"Klausen",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Klausen - 1948",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  6.69599,46.56624,872 ]
+    },
+    "properties": {
+    "Nom":"Le Chalet à Gobet",
+    "Categorie":"Col-routier-liste-wkp",
+    "PopUpContent":"Le Chalet à Gobet - 872",
+    "Status":"todo"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.15922,46.11226,1658 ]
+    },
+    "properties": {
+    "Nom":"Lein",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Lein - 1658",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  9.55848,46.75344,1549 ]
+    },
+    "properties": {
+    "Nom":"Lenzerheide",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Lenzerheide - 1549",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  6.96161,46.37055,1569 ]
+    },
+    "properties": {
+    "Nom":"Les Agites",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Les Agites - 1569",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 10.05617,46.44092,2315 ]
+    },
+    "properties": {
+    "Nom":"Livigno",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Livigno - 2315",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.80064,46.56339,1914 ]
+    },
+    "properties": {
+    "Nom":"Lukmanier",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Lukmanier - 1914",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  9.69581,46.39994,1815 ]
+    },
+    "properties": {
+    "Nom":"Maloja",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Maloja - 1815",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  6.25029,46.55279,1447 ]
+    },
+    "properties": {
+    "Nom":"Marchairuz",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Marchairuz - 1447",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  6.36392,46.65084,1180 ]
+    },
+    "properties": {
+    "Nom":"Mollendruz",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Mollendruz - 1180",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.05143,47.37008,858 ]
+    },
+    "properties": {
+    "Nom":"Montvoie",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Montvoie - 858",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.03946,47.18998,1227 ]
+    },
+    "properties": {
+    "Nom":"Mont Crosin",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Mont Crosin - 1227",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.90722,46.13902,557 ]
+    },
+    "properties": {
+    "Nom":"Monte Ceneri ",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Monte Ceneri  - 557",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.83031,46.25113,2048 ]
+    },
+    "properties": {
+    "Nom":"Moosalp",
+    "Categorie":"Col-routier-liste-wkp",
+    "PopUpContent":"Moosalp - 2048",
+    "Status":"todo"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.10263,46.39898,1445 ]
+    },
+    "properties": {
+    "Nom":"Mosses",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Mosses - 1445",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.36723,47.36246,550 ]
+    },
+    "properties": {
+    "Nom":"Mutschellen (AG)",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Mutschellen (AG) - 550",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.84536,46.11061,1395 ]
+    },
+    "properties": {
+    "Nom":"Néggia, Alpe di",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Néggia, Alpe di - 1395",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.38945,46.47760,2478 ]
+    },
+    "properties": {
+    "Nom":"Nufenen",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Nufenen - 2478",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.67121,46.65867,2044 ]
+    },
+    "properties": {
+    "Nom":"Oberalp",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Oberalp - 2044",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.76368,47.35191,731 ]
+    },
+    "properties": {
+    "Nom":"Obere Hauenstein",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Obere Hauenstein - 731",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 9.02764,47.27325,905 ]
+    },
+    "properties": {
+    "Nom":"Oberricken",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Oberricken - 905",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.88509,47.29414,925 ]
+    },
+    "properties": {
+    "Nom":"Orn-Bachtel",
+    "Categorie":"Col-routier-liste-wkp",
+    "PopUpContent":"Orn-Bachtel - 925",
+    "Status":"todo"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  6.85003,46.24590,1369 ]
+    },
+    "properties": {
+    "Nom":"Pas de Morgins",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Pas de Morgins - 1369",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.65611,47.35795,943 ]
+    },
+    "properties": {
+    "Nom":"Passwang",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Passwang - 943",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.04621,46.39177,1661 ]
+    },
+    "properties": {
+    "Nom":"Pierre du Moëllé",
+    "Categorie":"Col-routier-liste-wkp",
+    "PopUpContent":"Pierre du Moëllé - 1661",
+    "Status":"todo"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.19365,47.20973,827 ]
+    },
+    "properties": {
+    "Nom":"Pierre-Pertuis",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Pierre-Pertuis - 827",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.20457,46.35341,1546 ]
+    },
+    "properties": {
+    "Nom":"Pillon",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Pillon - 1546",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.12419,46.09699,1411 ]
+    },
+    "properties": {
+    "Nom":"Planches",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Planches - 1411",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.00124,47.12720,1110 ]
+    },
+    "properties": {
+    "Nom":"Pontins",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Pontins - 1110",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.86949,46.99915,1548 ]
+    },
+    "properties": {
+    "Nom":"Pragelpass",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Pragelpass - 1548",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.5639,47.75242,848 ]
+    },
+    "properties": {
+    "Nom":"Randenüberfahrt",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Randenüberfahrt - 848",
+    "Status":"todo"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.21916,47.38481,856 ]
+    },
+    "properties": {
+    "Nom":"Rangiers",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Rangiers - 856",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.66372,47.14183,1045 ]
+    },
+    "properties": {
+    "Nom":"Raten",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Raten - 1045",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.09103,47.00361,959 ]
+    },
+    "properties": {
+    "Nom":"Rengg",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Rengg - 959",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 9.04698,47.2661,796 ]
+    },
+    "properties": {
+    "Nom":"Ricken",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Ricken - 796",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  6.71992,47.05106,919 ]
+    },
+    "properties": {
+    "Nom":"Roches",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Roches - 919",
+    "Status":"todo"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 9.50279,47.39611,1016 ]
+    },
+    "properties": {
+    "Nom":"Ruppen",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Ruppen - 1016",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.3156,47.43827,648 ]
+    },
+    "properties": {
+    "Nom":"Rüsler",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Rüsler - 648",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.98598,47.42892,787 ]
+    },
+    "properties": {
+    "Nom":"Saalhöhe",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Saalhöhe - 787",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.30481,46.51452,1279 ]
+    },
+    "properties": {
+    "Nom":"Saanenmöser",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Saanenmöser - 1279",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.56116,46.55931,2108 ]
+    },
+    "properties": {
+    "Nom":"Saint-Gothard",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Saint-Gothard - 2108",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  9.17114,46.49714,2065 ]
+    },
+    "properties": {
+    "Nom":"San Bernardino",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"San Bernardino - 2065",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 7.80517,47.33902,797 ]
+    },
+    "properties": {
+    "Nom":"Santelhöchi",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Santelhöchi - 797",
+    "Status":"todo"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.6694,47.09334,933 ]
+    },
+    "properties": {
+    "Nom":"Sattel",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Sattel - 933",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.84656,47.12737,1219 ]
+    },
+    "properties": {
+    "Nom":"Sattelegg",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Sattelegg - 1219",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.95455,47.41681,820 ]
+    },
+    "properties": {
+    "Nom":"Schafmatt",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Schafmatt - 820",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 7.797,46.82617,1168 ]
+    },
+    "properties": {
+    "Nom":"Schallenberg",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Schallenberg - 1168",
+    "Status":"todo"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.58181,47.33577,1051 ]
+    },
+    "properties": {
+    "Nom":"Schelten",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Schelten - 1051",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 8.8873,47.30685,990 ]
+    },
+    "properties": {
+    "Nom":"Schufelberger Egg",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Schufelberger Egg - 990",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 9.30378,47.25357,1299 ]
+    },
+    "properties": {
+    "Nom":"Schwägalp",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Schwägalp - 1299",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.39247,46.73862,1547 ]
+    },
+    "properties": {
+    "Nom":"Schwarzenbühl",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Schwarzenbühl - 1547",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.03168,46.25021,2005 ]
+    },
+    "properties": {
+    "Nom":"Simplon",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Simplon - 2005",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  9.33038,46.50544,2113 ]
+    },
+    "properties": {
+    "Nom":"Splügen",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Splügen - 2113",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 9.53494,47.40992,1107 ]
+    },
+    "properties": {
+    "Nom":"St. Anton (AI)",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"St. Anton (AI) - 1107",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 9.5292,47.02862,717 ]
+    },
+    "properties": {
+    "Nom":"St.Luzisteig",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"St.Luzisteig - 717",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.06047,47.43383,621 ]
+    },
+    "properties": {
+    "Nom":"Staffelegg",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Staffelegg - 621",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 9.46543,47.36203,971 ]
+    },
+    "properties": {
+    "Nom":"Stoss",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Stoss - 971",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.45121,46.73132,2224 ]
+    },
+    "properties": {
+    "Nom":"Susten",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Susten - 2224",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  6.77884,46.98371,1170 ]
+    },
+    "properties": {
+    "Nom":"Tourne",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Tourne - 1170",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 10.43318,46.54164,2501 ]
+    },
+    "properties": {
+    "Nom":"Umbrail",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Umbrail - 2501",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.86905,47.38124,691 ]
+    },
+    "properties": {
+    "Nom":"Unterer Hauenstein",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Unterer Hauenstein - 691",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  6.87005,47.07262,1283 ]
+    },
+    "properties": {
+    "Nom":"Vue des Alpes",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Vue des Alpes - 1283",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 9.11412,47.32595,843 ]
+    },
+    "properties": {
+    "Nom":"Wasserfluh",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Wasserfluh - 843",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.50831,47.25515,1284 ]
+    },
+    "properties": {
+    "Nom":"Weissenstein",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Weissenstein - 1284",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 9.35045,47.20332,1092 ]
+    },
+    "properties": {
+    "Nom":"Wildhaus",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Wildhaus - 1092",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  9.85399,46.83313,1631 ]
+    },
+    "properties": {
+    "Nom":"Wolfgang",
+    "Categorie":"Col-routier-carte-wkp",
+    "PopUpContent":"Wolfgang - 1631",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  8.53498,47.14430,1039 ]
+    },
+    "properties": {
+    "Nom":"Zugerberg",
+    "Categorie":"Col-routier-liste-wkp",
+    "PopUpContent":"Zugerberg - 1039 -- TEST",
+    "Status":"done"      //sadsadsadsadsadsadsadsadsdsad
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [  7.28622,46.33149,2252 ]
+    },
+    "properties": {
+    "Nom":"Col du Sanetsch",
+    "Categorie":"Col-routier-ch-divers",
+    "PopUpContent":"Col du Sanetsch - 2252",
+    "Status":"done"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 10.45306,46.52861,2758 ]
+    },
+    "properties": {
+    "Nom":"Col du Stelvio",
+    "Categorie":"Col-routier-ch-divers",
+    "PopUpContent":"Col du Stelvio - 2758",
+    "Status":"done"
+    }
+  }
+]
+};
+
+
+
+
+// définition e la map
+var mymap = L.map('mapid', {
+    center: [46.878968, 8.616028],
+    zoom: 9
+});
+
+// chargement du fond de carte
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+  maxZoom: 18,
+  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+  id: 'mapbox/streets-v11',
+  tileSize: 512,
+  zoomOffset: -1
+}).addTo(mymap);
+
+
+
+//ajout du paneau latéral
+var sidebar = L.control.sidebar({
+    autopan: true,       // whether to maintain the centered map point when opening the sidebar
+    closeButton: true,    // whether t add a close button to the panes
+    container: 'sidebar', // the DOM container or #ID of a predefined sidebar container that should be used
+    position: 'right',     // left or right
+}).addTo(mymap);
+sidebar
+      .addPanel({
+          id:   'filtres',
+          tab:  '<i class="fa fa-filter"></i>',
+          title: 'Filtres',
+          pane: '<h2>filtres des rubriques</h2>' +
+              '<div class="form-check">\n' +
+              '  <input class="form-check-input" type="checkbox" checked name="listePoi" id="Col-routier-carte-wkp">\n' +
+              '  <label class="form-check-label" for="Col-routier-carte-wkp">\n' +
+              '    Carte wikipédia\n' +
+              '  </label>\n' +
+              '</div>\n' +
+              '<div class="form-check">\n' +
+              '  <input class="form-check-input" type="checkbox"  name="listePoi" id="Col-routier-liste-wkp" >\n' +
+              '  <label class="form-check-label" for="Col-routier-liste-wkp">\n' +
+              '   Liste wikipédia\n' +
+              '  </label>\n' +
+              '</div>\n ' +
+              '<div class="form-check">\n' +
+              '  <input class="form-check-input" type="checkbox"   name="listePoi" id="Col-routier-ch-divers" >\n' +
+              '  <label class="form-check-label" for="Col-routier-ch-divers">\n' +
+              '   Divers\n' +
+              '  </label>\n' +
+              '</div>\n' +
+              '<h2>filtres des statuts</h2>\n' +
+              '<ul>\n' +
+              '<li><input type="radio" name="statutPoi" id="a" value ="done" checked><label>Déjà visité</label></li>\n' +
+              '<li><input type="radio" name="statutPoi" id="b" value ="todo" ><label>A visiter</label></li>\n' +
+              '<li><input type="radio" name="statutPoi" id="c" value ="all" ><label>Tout</label></li>\n' +
+              '</ul>',
+      })
+      .addPanel({
+          id:   'layers',
+          tab:  '<i class="fa fa-map"></i>',
+          title: 'Couches',
+          pane: '<p>Remove.<p/><p><button onclick="removeMarker()">RemoveBASE</button>' +
+              '<button onclick="removeMarkerFromMap()">Remove selection</button></p>',
+      })
+      // add a tab with a click callback, initially disabled
+      .addPanel({
+          id:   'mail',
+          tab:  '<i class="fa fa-envelope"></i>',
+          title: 'Messages',
+          button: function() { alert('opened via JS callback') },
+          disabled: true,
+      })
+
+
+//ajout de l'outils de recherche de localité
+mymap.addControl( new L.Control.Search({
+    url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
+    jsonpParam: 'json_callback',
+    propertyName: 'display_name',
+    propertyLoc: ['lat','lon'],
+    marker: L.circleMarker([0,0],{radius:20}),
+    autoCollapse: true,
+    autoType: false,
+    minLength: 2
+  }) );
+
+
+
+// définition dews icones des marqueurs
+var toDoIcon = L.icon({
+    iconUrl: 'todo.png',
+    iconSize: [38, 38],
+});
+
+var doneIcon = L.icon({
+    iconUrl: 'done.png',
+    iconSize: [38, 38],
+});
+
+
+
+
+//gestion du choix de la liste des marqueurs
+let listePoiActifs = [];
+$('input:checkbox').change(function(){
+    let r;
+    $.each($("input[name='listePoi']"), function(){
+        if(this.checked) {
+            r = listePoiActifs.findIndex(element => element === this.id);
+            if (r === -1){
+                listePoiActifs.push(this.id);
+                //addMarkerToMap('Col-routier-liste-wkp');
+                addMarkerToMap(this.id);
+            }
+        }
+        else{
+            r =listePoiActifs.findIndex(element => element === this.id);
+            if(r !== -1){
+                removeMarkerFromMap(listePoiActifs[r]);
+                listePoiActifs.splice(r,1);
+            }
+        }
+    });
+})
+
+
+
+// gestion du filtre de statut
+$('input:radio').change(function(){
+    if ($("#a").is(":checked")) {
+        statutToAdd = 'done';
+    }
+    else if ($("#b").is(":checked")) {
+        statutToAdd = 'todo';
+    }
+    else
+        statutToAdd = 'all';
+
+    removeAllMarkerFromMap();
+    listePoiActifs=[];
+    $('input:checkbox').trigger('change'); // déclenche l'action
+
+
+});
+
+
+
+
+
+// retourne l'icone du marqueur en fonction du statut
+function selectIcon(feature, latlng){
+  if(feature.properties.Status === "todo")
+            return L.marker(latlng, {icon: toDoIcon});
+  else
+      return L.marker(latlng, {icon: doneIcon});  
+}
+
+
+//définition des condition pour afficher un marqueur
+function poiFilter(feature) {
+    //listePoiActifs[0] = 'Col-routier-liste-wkp'
+    //filterString="(feature.properties.Status === \"done\" || feature.properties.Status === \"todo\") && feature.properties.Categorie === \"Col-routier-ch-divers\""
+    //filterString="(feature.properties.Status === \"done\" || feature.properties.Status === \"todo\") && feature.properties.Categorie === \"Col-routier-carte-wkp\""
+    //filterString="(feature.properties.Status === \"done\" || feature.properties.Status === \"todo\") && feature.properties.Categorie === \""+ catToAdd + "\"";
+
+    let sStatut;
+    switch (statutToAdd){
+
+       case'all':
+           sStatut = "(feature.properties.Status === \"done\" || feature.properties.Status === \"todo\")"
+           break;
+       case'done':
+           sStatut = "(feature.properties.Status === \"done\" )"
+           break;
+
+       case'todo':
+           sStatut = "(feature.properties.Status === \"todo\" )"
+           break;
+    }
+
+    filterString= sStatut + " && feature.properties.Categorie === \""+ catToAdd + "\"";
+
+
+
+
+    //filterString="feature.properties.Status === \"done\" || feature.properties.Status === \"todo\" "
+    //filterString="feature.properties.Status === \"done\""
+    //filterString="feature.geometry.coordinates[2] >= 1000"
+    //if(feature.properties.Status === "done" || feature.properties.Status === "todo")
+
+    if(eval(filterString))
+        return true;
+}
+
+
+//constuit les popups
+function onEachFeature(feature, layer) {
+    //if (feature.properties && feature.properties.PopUpContent && (feature.properties.Status == "todo")) {
+  if (feature.properties && feature.properties.PopUpContent) {
+    compte ++;
+    layer.bindPopup(feature.properties.PopUpContent);
+  }
+}
+
+
+function addMarkerToMap(cat){
+    // charge les marqueur depuis la collection geoJson
+
+    catToAdd = cat;
+
+    L.geoJSON(geojsonFeatureCollection, {
+        pointToLayer: selectIcon,
+        filter: poiFilter,
+        onEachFeature: onEachFeature
+    }).addTo(mymap);
+    //alert (compte);
+
+
+}
+function removeMarkerFromMap(cat){
+   $.each(mymap._layers, function (ml) {
+
+       //console.log(map._layers)
+        if (mymap._layers[ml].feature) {
+           if(this.feature.properties.Categorie === cat){
+               mymap.removeLayer(this);
+               compte --;
+           }
+
+        }
+    })
+}
+
+
+
+function removeAllMarkerFromMap(){
+    $.each(mymap._layers, function (ml) {
+
+        //console.log(map._layers)
+        if (mymap._layers[ml].feature) {
+            mymap.removeLayer(this);
+        }
+    })
+}
+
+/*// place Home
+const geojsonFeature = {
+    "type": "Feature",
+    "properties": {
+        "name": "Coors Field",
+        "amenity": "Baseball Stadium",
+        "popupContent": "This is where the Rockies play!"
+    },
+    "geometry": {
+        "type": "Point",
+        "coordinates": [ 7.34995, 47.36224]
+    }
+};
+L.geoJSON(geojsonFeature).addTo(mymap);*/
+
+// charge les POI par défault
+let compte  = 0;
+let catToAdd;
+let statutToAdd ='all';
+
+$('input:checkbox').trigger('change'); // déclenche l'action
+$('input:radio').trigger('change'); // déclenche l'action
+
+
+
+
+
+
+
+
+</script>
+  </body>
+</html>
