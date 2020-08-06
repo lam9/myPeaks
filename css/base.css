@@ -11,7 +11,7 @@ html {
 }
 
 #mapid {
-    height: 100%;
+    height: 95%;
     width: 100%;
 }
 
@@ -20,5 +20,19 @@ html {
 ul{
     padding-left: 0;
     list-style-type: none;
+}
+
+.leaflet-container{
+    font-size: 1.2rem;
+}
+
+.leaflet-sidebar h2{
+    font-size: 1.2rem;
+    font-style: italic;
+    padding-top: 0.9rem;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    margin-right: 5px;
 }
 
