@@ -1,0 +1,4 @@
+/* https://web.dev/add-manifest/ */
+{
+    "display": "standalone"
+}
